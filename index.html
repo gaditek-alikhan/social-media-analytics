@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Test</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link href="css/dataTables.bootstrap.css" rel="stylesheet">  
+	<link rel="stylesheet" type="text/css" media="all" href="css/bootstrap-theme.css">  
+	<link href="css/dataTables.responsive.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/highcharts.min.js"></script>
+	<script type="text/javascript" src="js/lodash.min.js"></script>
+
+	<script src = "js/angular.min.js"></script>
+	<script type="text/javascript">
+	var App = angular.module('App', []);
+	</script>
+	<script type="text/javascript" src="js/helper.js"></script>
+	<script type="text/javascript" src="js/controller.js"></script>
+
+	<script type="text/ng-template" class="tmp_SimpleTable" id="tbl_tpl">
+	<table class="table table-bordered table-hover table-striped table-condensed tbl-SimpleTable">
+	<thead class="flip-content">
+	<tr>
+	{{header_columns}}
+	</tr>
+	</thead>
+	<tbody">
+	{{rows}}
+	</tbody>
+	</table>
+	</script>
+		
+</head>
+
+<body ng-app = "App" ng-controller = "indexController">
+      
+<div class="container">	  
+	<div class="row">
+		<div class="col-md-12" style="displayx:none;">
+			<!--<div ng-include="'tbl_tpl.html'"></div>-->			
+			<h1 class="page-header">Servers</h1>
+			<div class="dataTable_wrapper content"></div>
+		</div> 
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6" ng-repeat="obj in data_filtered">		
+			<ul class="list-group">
+			<li class="list-group-item"><img ng-src="{{obj.actor_avator}}" title="View Profile" width="80" height="80"/><a href="{{obj.actor_url}}" title="View Profile">{{obj.actor_name}}</a></li>
+			<li class="list-group-item"><i class="fa fa-{{obj.provider}} fa-lg" aria-hidden="true"></i>{{obj.provider}}</li>
+			<li class="list-group-item"><i class="fa fa-calendar-o fa-lg" aria-hidden="true"></i>{{obj.activity_date}}</li>
+			<li class="list-group-item"><i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>{{obj.actor_url}}</li>        
+			<li class="list-group-item"><i class="fa fa-newspaper-o fa-lg" aria-hidden="true"></i>{{obj.actor_description}}</li>
+			<li class="list-group-item"><i class="fa fa-hand-o-up fa-lg" aria-hidden="true"></i>Likes:{{obj.activity_likes}}</li>
+			<li class="list-group-item">
+			<a href="javascript:void(0)" class="btn btn-info" ng-click="updateLikes(obj)">Like</a>
+			<a href="{{obj.activity_url}}" class="btn btn-primary">Activity Details</a>
+			</li>			
+			</ul>
+		</div>		
+    </div>		
+	
+	<div class="row">
+		<div class="col-md-6 containerpie" style="displayx:none;"></div>
+		<div class="col-md-6 containercolumn" style="displayx:none;"></div>
+	</div> 
+</div>      
+</body>
+</html>
